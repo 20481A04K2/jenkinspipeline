@@ -11,7 +11,7 @@ metadata:
 spec:
   # externalTrafficPolicy: Local is technically redundant with L4-RBS enabled
   # but can be left for additional enforcement if desired.
-  externalTrafficPolicy: Local 
+  #externalTrafficPolicy: Local 
   
   selector:
     app: simple-nginx
