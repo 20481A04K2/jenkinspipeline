@@ -4,7 +4,7 @@ metadata:
   name: simple-nginx-service
   annotations:
     # Optional but good for GKE: ensure only L4 Load Balancer is created
-    cloud.google.com/load-balancer-type: "Internal" 
+    #cloud.google.com/load-balancer-type: "Internal" 
 spec:
   # VITAL CHANGE: Ensures the Load Balancer only targets nodes where the pods exist.
   externalTrafficPolicy: Local 
