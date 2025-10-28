@@ -3,10 +3,14 @@ kind: Service
 metadata:
   name: simple-nginx-service
   annotations:
-    # Optional but good for GKE: ensure only L4 Load Balancer is created
-    #cloud.google.com/load-balancer-type: "Internal" 
+    # VITAL CHANGE: Use the GKE Regional Backend Service (RBS) architecture.
+    # This architecture uses Network Endpoint Groups (NEGs) as backends, 
+    # ensuring only Pods (and thus only the nodes running them) are targeted,
+    # thereby excluding the default-pool nodes from the backend list.
+    cloud.google.com/l4-rbs: "enabled"
 spec:
-  # VITAL CHANGE: Ensures the Load Balancer only targets nodes where the pods exist.
+  # externalTrafficPolicy: Local is technically redundant with L4-RBS enabled
+  # but can be left for additional enforcement if desired.
   externalTrafficPolicy: Local 
   
   selector:
